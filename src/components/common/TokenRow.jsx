@@ -4,9 +4,14 @@ import { svg2img } from "../../utils/randomAvatar";
 import { green } from "@mui/material/colors";
 import { removeW } from "../../utils/funcs";
 import "./style.css";
+import { Box, Divider, Drawer, IconButton, Typography } from "@mui/material";
+import useDisplayTokenData from "./hooks/useDisplayTokenData";
+import { Close } from "@mui/icons-material";
 
 const TokenRow = ({ data }) => {
   const [imageExists, setImageExists] = useState(false);
+  const { isOpen, closeDisplay, selectedToken, toggleDisplay } =
+    useDisplayTokenData();
 
   // useEffect(() => {
   //   checkImg(
@@ -22,73 +27,100 @@ const TokenRow = ({ data }) => {
   // }, [data.symbol]);
 
   return (
-    <tr>
-      <td
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-center",
-          paddingTop: "20px",
-          paddingBottom: "0px",
-          borderCollapse: "collapse",
-          borderColor: "black",
-          paddingLeft: "80px",
-          alignItems: "center",
-        }}
-        className="token-header"
-      >
-        <img
-          src={
-            data.logo
-              ? `https://assets.thetatoken.org/tokens/${data.logo}`
-              : svg2img(data)
-          }
-          style={
-            data.logo
-              ? { width: "20px", marginRight: "10px" }
-              : { width: "20px", marginRight: "10px", borderRadius: "50%" }
-          }
-        />
-        <div className="font-header" style={{ marginRight: "3px" }}>
-          {removeW(data.symbol)}
-        </div>
-
-        <span
-          className="font-regular"
+    <>
+      <tr>
+        <td
           style={{
-            fontSize: "small",
-            color: "#449782",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-center",
+            paddingTop: "20px",
+            paddingBottom: "0px",
+            borderCollapse: "collapse",
+            borderColor: "black",
+            paddingLeft: "80px",
+            alignItems: "center",
           }}
+          className="token-header"
         >
-          {"+" +
-            (data.tradeVolumeETH * 1
-              ? (
-                  ((data.volume24HrsETH * 1) / (data.tradeVolumeETH * 1)) *
-                  100
-                ).toFixed(2)
-              : "0") +
-            "%"}
-        </span>
-      </td>
-      <td style={{ textAlign: "start" }} className="font-regular">
-        {"$" + data.derivedUSD}
-      </td>
-      <td style={{ textAlign: "start" }} className="font-regular">
-        ${formatNumber(data.tradeVolumeUSD * 1)}
-      </td>
-      <td style={{ textAlign: "start" }} className="font-regular">
-        {"$" + formatNumber(data.totalLiquidityUSD * 1)}
-      </td>
-      <td style={{ textAlign: "start" }} className="font-regular">
-        {"$" + formatNumber(data.tradeVolume * 1)}
-      </td>
-      <td
-        style={{ textAlign: "start", paddingRight: "80px" }}
-        className="font-regular"
-      >
-        {"2yr 3mon"}
-      </td>
-    </tr>
+          <img
+            src={
+              data.logo
+                ? `https://assets.thetatoken.org/tokens/${data.logo}`
+                : svg2img(data)
+            }
+            style={
+              data.logo
+                ? { width: "20px", marginRight: "10px" }
+                : { width: "20px", marginRight: "10px", borderRadius: "50%" }
+            }
+          />
+          <div
+            onClick={toggleDisplay}
+            className="font-header"
+            style={{ marginRight: "3px" }}
+          >
+            {removeW(data.symbol)}
+          </div>
+
+          <span
+            className="font-regular"
+            style={{
+              fontSize: "small",
+              color: "#449782",
+            }}
+          >
+            {"+" +
+              (data.tradeVolumeETH * 1
+                ? (
+                    ((data.volume24HrsETH * 1) / (data.tradeVolumeETH * 1)) *
+                    100
+                  ).toFixed(2)
+                : "0") +
+              "%"}
+          </span>
+        </td>
+        <td style={{ textAlign: "start" }} className="font-regular">
+          {"$" + data.derivedUSD}
+        </td>
+        <td style={{ textAlign: "start" }} className="font-regular">
+          ${formatNumber(data.tradeVolumeUSD * 1)}
+        </td>
+        <td style={{ textAlign: "start" }} className="font-regular">
+          {"$" + formatNumber(data.totalLiquidityUSD * 1)}
+        </td>
+        <td style={{ textAlign: "start" }} className="font-regular">
+          {"$" + formatNumber(data.tradeVolume * 1)}
+        </td>
+        <td
+          style={{ textAlign: "start", paddingRight: "80px" }}
+          className="font-regular"
+        >
+          {"2yr 3mon"}
+        </td>
+      </tr>
+
+      <Drawer anchor="right" open={isOpen} onClose={closeDisplay}>
+        <Box width={300} role="presentation" p={2}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography variant="h6">
+              {selectedToken?.symbol} Details
+            </Typography>
+            <IconButton onClick={closeDisplay}>
+              <Close />
+            </IconButton>
+          </Box>
+          <Divider sx={{ my: 2 }} />
+          <Typography>Data 1</Typography>
+          <Typography>Data 2</Typography>
+          <Typography>Data 3</Typography>
+        </Box>
+      </Drawer>
+    </>
   );
 };
 
