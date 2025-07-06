@@ -7,11 +7,16 @@ export const DrawerHeader = () => {
   if (!token) return null;
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center">
-      <Typography variant="h6">
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      className="font-header"
+    >
+      <Typography variant="h6" color="white">
         {token.name} ({token.symbol})
       </Typography>
-      <IconButton onClick={closeDisplay}>
+      <IconButton onClick={closeDisplay} sx={{ color: "white" }}>
         <Close />
       </IconButton>
     </Box>

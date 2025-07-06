@@ -15,7 +15,7 @@ export const DrawerBody = () => {
       <Box id="title" display="flex" alignItems="center" mb={2}>
         <img
           src={logo}
-          alt={"token-logo"}
+          alt="token-logo"
           style={{
             width: 40,
             height: 40,
@@ -23,13 +23,26 @@ export const DrawerBody = () => {
             borderRadius: "50%",
           }}
         />
-        <Typography variant="subtitle1">{token.name}</Typography>
+        <Typography variant="subtitle1" className="font-header" color="white">
+          {token.name}
+        </Typography>
       </Box>
 
       <Box id="data">
         {tokenMetadata.map(({ label, value }) => (
-          <Typography key={label}>
-            <strong>{label}:</strong> {value}
+          <Typography
+            key={label}
+            className="font-regular"
+            sx={{
+              mb: 1,
+              color: "white",
+              fontSize: "0.95rem",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span style={{ color: "#00a3cc" }}>{label}:</span>
+            <span>{value}</span>
           </Typography>
         ))}
       </Box>
