@@ -4,56 +4,14 @@ import useDisplayTokenData from "./hooks/useDisplayTokenData";
 import { svg2img } from "utils/randomAvatar";
 
 const TokenDataDrawer = () => {
-  const { isOpen, closeDisplay, selectedToken: token } = useDisplayTokenData();
+  const {
+    isOpen,
+    closeDisplay,
+    selectedToken: token,
+    tokenMetadata,
+  } = useDisplayTokenData();
 
   if (!token) return null;
-
-  const tokenMetadata = [
-    {
-      label: "Derived ETH",
-      value: token.derivedETH,
-    },
-    {
-      label: "Derived USD",
-      value: `$${token.derivedUSD}`,
-    },
-    {
-      label: "Total Liquidity",
-      value: Number(token.totalLiquidity).toLocaleString(),
-    },
-    {
-      label: "Total Liquidity USD",
-      value: `$${Number(token.totalLiquidityUSD).toLocaleString()}`,
-    },
-    {
-      label: "Trade Volume",
-      value: Number(token.tradeVolume).toLocaleString(),
-    },
-    {
-      label: "Trade Volume ETH",
-      value: Number(token.tradeVolumeETH).toLocaleString(),
-    },
-    {
-      label: "Trade Volume USD",
-      value: `$${Number(token.tradeVolumeUSD).toLocaleString()}`,
-    },
-    {
-      label: "Transaction Count",
-      value: token.txCount,
-    },
-    {
-      label: "Transaction Count (24H)",
-      value: token.txCount24Hrs,
-    },
-    {
-      label: "Volume (24H) ETH",
-      value: Number(token.volume24HrsETH).toLocaleString(),
-    },
-    {
-      label: "Volume (24H) USD",
-      value: `$${Number(token.volume24HrsUSD).toLocaleString()}`,
-    },
-  ];
 
   const logo = token.logo
     ? `https://assets.thetatoken.org/tokens/${token.logo}`
