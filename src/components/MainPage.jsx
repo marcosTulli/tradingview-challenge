@@ -4,7 +4,7 @@ import MainComponent from "./MainComponent";
 import { Header } from "./Header";
 import { TokenList } from "./TokenList";
 import Footer from "./Footer";
-import TokenDataDrawer from "./common/TokenDataDrawer";
+import TokenDataDrawer from "./common/TokenDrawer";
 
 const MainPage = () => {
   return (

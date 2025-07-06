@@ -7,7 +7,7 @@ import "./style.css";
 import { Box, Divider, Drawer, IconButton, Typography } from "@mui/material";
 import useDisplayTokenData from "./hooks/useDisplayTokenData";
 import { Close } from "@mui/icons-material";
-import TokenDataDrawer from "./TokenDataDrawer";
+import TokenDataDrawer from "./TokenDrawer";
 
 const TokenRow = ({ data }) => {
   const [imageExists, setImageExists] = useState(false);
