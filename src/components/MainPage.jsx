@@ -4,12 +4,14 @@ import MainComponent from "./MainComponent";
 import { Header } from "./Header";
 import { TokenList } from "./TokenList";
 import Footer from "./Footer";
+import TokenDataDrawer from "./common/TokenDataDrawer";
 
 const MainPage = () => {
   return (
     <div>
       <Header />
       <TokenList />
+      <TokenDataDrawer />
       <MainComponent />
       <Footer />
     </div>

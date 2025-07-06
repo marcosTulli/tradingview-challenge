@@ -7,11 +7,11 @@ import "./style.css";
 import { Box, Divider, Drawer, IconButton, Typography } from "@mui/material";
 import useDisplayTokenData from "./hooks/useDisplayTokenData";
 import { Close } from "@mui/icons-material";
+import TokenDataDrawer from "./TokenDataDrawer";
 
 const TokenRow = ({ data }) => {
   const [imageExists, setImageExists] = useState(false);
-  const { isOpen, closeDisplay, selectedToken, toggleDisplay } =
-    useDisplayTokenData();
+  const { toggleDisplay } = useDisplayTokenData();
 
   // useEffect(() => {
   //   checkImg(
@@ -56,7 +56,7 @@ const TokenRow = ({ data }) => {
             }
           />
           <div
-            onClick={toggleDisplay}
+            onClick={() => toggleDisplay(data)}
             className="font-header"
             style={{ marginRight: "3px" }}
           >
@@ -99,27 +99,6 @@ const TokenRow = ({ data }) => {
           {"2yr 3mon"}
         </td>
       </tr>
-
-      <Drawer anchor="right" open={isOpen} onClose={closeDisplay}>
-        <Box width={300} role="presentation" p={2}>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Typography variant="h6">
-              {selectedToken?.symbol} Details
-            </Typography>
-            <IconButton onClick={closeDisplay}>
-              <Close />
-            </IconButton>
-          </Box>
-          <Divider sx={{ my: 2 }} />
-          <Typography>Data 1</Typography>
-          <Typography>Data 2</Typography>
-          <Typography>Data 3</Typography>
-        </Box>
-      </Drawer>
     </>
   );
 };

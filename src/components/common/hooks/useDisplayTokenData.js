@@ -1,22 +1,21 @@
-// useDisplayTokenData.js
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setSelectedToken,
+  clearSelectedToken,
+} from "../../../redux/reducers/displayTokenData";
 
 const useDisplayTokenData = () => {
-  const [selectedToken, setSelectedToken] = useState(null);
-
-  const toggleDisplay = (token) => {
-    setSelectedToken(token);
-  };
-
-  const closeDisplay = () => {
-    setSelectedToken(null);
-  };
+  const dispatch = useDispatch();
+  const selectedToken = useSelector(
+    (state) => state.displayTokenData.selectedToken
+  );
+  const isOpen = Boolean(selectedToken);
 
   return {
     selectedToken,
-    isOpen: Boolean(selectedToken),
-    toggleDisplay,
-    closeDisplay,
+    isOpen,
+    toggleDisplay: (token) => dispatch(setSelectedToken(token)),
+    closeDisplay: () => dispatch(clearSelectedToken()),
   };
 };
 
