@@ -1,5 +1,18 @@
 
-In the project directory, you can run:
+## Environment
+
+- Node version: **v20.15+**
+
+## Task Instructions
+
+The function you need to add is:
+
+- When clicking a **token name on the right side**, you must display **all data of each token**.
+
+## Restrictions
+
+- **Only use shared projects**.
+- **Do not use any other open-source projects or external assets**.
 
 ## "install node module"
 
